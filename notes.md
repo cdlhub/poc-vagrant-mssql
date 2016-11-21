@@ -16,3 +16,31 @@ Error:
 
 - MacOS: `sudo rm -rf /opt/vagrant/embedded/bin/curl`
 - Windows:
+
+## Commands
+
+```sh
+# Initialize a project folder for vagrant use
+vagrant init
+
+# Add a box to vagrant folder
+vagrant box add <box>
+
+# Initialize and add a box in one step
+vagrant init <box>
+
+# Start the VM
+vagrant up
+
+# Shutdown VM
+vagrant halt
+
+# Suspend VM
+vagrant suspend
+
+# Perform halt and up in one command
+vagrant reload
+
+# Completely remove VM from VirtualBox
+vagrant destroy
+```
