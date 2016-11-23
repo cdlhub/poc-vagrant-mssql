@@ -11,6 +11,7 @@ Proof of Concept to install MS SQL Server in a Vagrant Linux box
     ```sh
     vagrant plugin install vagrant-vbguest
     ```
+- [Git for Windows](https://git-scm.com/download/) to get access to SSH commands.
 
 **Note**: Vagrant boxes are located in `~/.vagrant.d/boxes/` (Linux) or `C:\Users\<your-login>\.vagrant.d\boxes\` (Windows).
 
