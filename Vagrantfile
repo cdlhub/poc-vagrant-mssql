@@ -22,11 +22,11 @@ Vagrant.configure("2") do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  # config.vm.network "forwarded_port", guest: 80, host: 8080
+   config.vm.network "forwarded_port", guest: 1433, host: 11443
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  # config.vm.network "private_network", ip: "192.168.33.10"
+   config.vm.network "private_network", ip: "192.168.33.10"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
@@ -41,7 +41,7 @@ Vagrant.configure("2") do |config|
 #    owner: "mssql",
 #    group: "mssql",
 #    mount_options: ["dmode=775,fmode=664"]
-    #config.vm.synced_folder  "./data", "/tmp/mssql-data",
+    #config.vm.synced_folder  "./data", "/tmp/mssql-data", type: "smb"
     #  owner: "mssql",
     #  group: "mssql",
     #  mount_options: ["dmode=775,fmode=664"]
