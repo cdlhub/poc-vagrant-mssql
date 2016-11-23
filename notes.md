@@ -27,6 +27,12 @@ Check MS SQL service is running:
 systemctl status mssql-server
 ```
 
+Connect to SQL Server from the VM:
+
+```sh
+sqlcmd -S localhost -U SA -P 'sa_pa$$w0rd'
+```
+
 Create database on host file system:
 
 ```sql
@@ -39,6 +45,25 @@ log on
 ( NAME = N'test1_log', FILENAME = N'/vagrant_data/test1.ldf')
 go
 ```
+
+Attach a database:
+
+```sql
+CREATE DATABASE DatabaseName
+    ON (FILENAME = 'FilePath\FileName.mdf'), -- Main Data File .mdf
+    (FILENAME = 'FilePath\LogFileName.ldf') -- Log file .ldf
+    FOR ATTACH;
+GO
+```
+
+## Solution
+
+1. Shared folder does not work with DB file (neither MS SQL Server nor PostgreSQL) when switching host system (Windows, MacOS, ...).
+2. The DB file (mdf) needs to be inside Vagrant box =>
+    1. copy mdf from prod DB to a Vagrant shared folder.
+    2. Inside Vagrant box, copy mdf file from shared folder to MS SQL Server database file location.
+    3. change owner / group to `mssql`.
+    4. Attach DB files to server using `sqlcmd`.
 
 ## Provisioning
 
@@ -76,4 +101,13 @@ vagrant status
 
 # List install boxes
 vagrant box list
+
+# Delete a vagrant box (and all its files in .vagrant.d/boxes)
+varant box remove <box-name>
+
+# Create a package from a running box
+vagrant package --output <box-name>.box
+
+# Add a package to boxes
+vagrant box add --name <name> <box-name>.box
 ```
