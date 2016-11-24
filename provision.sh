@@ -9,7 +9,8 @@ echo ""
 echo "##### 2. Installing MS SQL Server..."
 curl https://packages.microsoft.com/config/rhel/7/mssql-server.repo > /etc/yum.repos.d/mssql-server.repo
 yum install -y mssql-server
-echo "#### 2. Done.\n"
+echo "#### 2. Done."
+echo ""
 
 echo "##### 3. Seting up MS SQL Server..."
 export SA_PASSWORD='sa_pa$$w0rd'
@@ -29,4 +30,5 @@ mkdir /mssql-data
 chown mssql /mssql-data
 chgrp mssql /mssql-data
 sqlcmd -S localhost -U SA -P 'sa_pa$$w0rd' -i /vagrant/scripts/create-db.sql
-echo "#### 5. Done.\n"
+echo "#### 5. Done."
+echo ""
