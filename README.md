@@ -107,6 +107,8 @@ Hyper-V and VirtualBox cannot run together. Hyper-V needs to be turned off. See 
 
 ## Project's record of work
 
+Follow these steps if you want to reproduce the project.
+
 - Create a git repository for the project:
 
     ```sh
