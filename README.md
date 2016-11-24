@@ -31,6 +31,11 @@ The objective of this project is to be able to encapsulate MS SQL Server install
     vagrant plugin install vagrant-vbguest
     ```
 - Download [Git for Windows](https://git-scm.com/download/) to let Vagrant use SSH command on Windows Console (this is not needed on systems that have _ssh_ installed by defulat like Linux and MacOS).
+- Install MS SQL tools on your host:
+    - Windows:  [SSMS](https://msdn.microsoft.com/en-us/library/mt238290.aspx).
+    - Linux: [SQL Server tools](https://docs.microsoft.com/fr-fr/sql/linux/sql-server-linux-setup-tools).
+    - MacOS: [sql-cli](https://www.npmjs.com/package/sql-cli).
+    - Visual Studio Code (any platforms): [mssql extension](https://github.com/Microsoft/vscode-mssql#mssql-for-visual-studio-code).
 - Turn off Hyper-V feature on Windows:
 
     ![Turn off Hyper-V feature](img/turn-off-hyper-v-feature.png)
@@ -172,10 +177,14 @@ Hyper-V and VirtualBox cannot run together. Hyper-V needs to be turned off. See 
                └─26413 /opt/mssql/bin/sqlservr
    [vagrant@mssqlserver ~]$ exit
     ```
-- Run _SSMS_ or `sqlcmd` from the host machine to access VM. Simple scripts are provided in [`scripts/`](scripts) folder:
+- Run _SSMS_ (Windows), `sqlcmd` (Linux), or `sql-cli`(MacOS) from the host machine to access VM. Simple scripts are provided in [`scripts/`](scripts) folder:
 
     ```sh
+    # sqlcmd
     sqlcmd -S 192.168.33.10 -U SA -P 'sa_pa$$w0rd' -i scripts/insert-data.sqlcmd
+
+    # sql-cli
+    mssql -s 192.168.33.10 -u SA -p 'sa_pa$$w0rd'
     ```
 
 ## Vagrant commands
