@@ -7,6 +7,7 @@
   - [Troubleshooting](#troubleshooting)
     - [Cannot download box](#cannot-download-box)
     - [Hyper-V and VirtualBox incompatibility](#hyper-v-and-virtualbox-incompatibility)
+    - [rsync cannot be found](#rsync-cannot-be-found)
   - [Project's record of work](#projects-record-of-work)
   - [Vagrant commands](#vagrant-commands)
 
@@ -104,6 +105,22 @@ VBoxManage.exe: error: Details: code E_FAIL (0x80004005), component ConsoleWrap,
 ```
 
 Hyper-V and VirtualBox cannot run together. Hyper-V needs to be turned off. See [Installation steps](#installation).
+
+### rsync cannot be found
+
+**Error:**
+
+```
+==> default: Setting the name of the VM: MS-SQL-Server
+"rsync" could not be found on your PATH. Make sure that rsync
+is properly installed on your system and available on the PATH.
+```
+
+This can happen on Windows. Change share settings of `/vagrant` folder to VirtualBox rather than `rsync`. Add the following line to `Vagrantfile` to override this setting:
+
+```ruby
+config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
+```
 
 ## Project's record of work
 

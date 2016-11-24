@@ -60,6 +60,8 @@ Vagrant.configure("2") do |config|
     vb.memory = "4096"
     vb.cpus = 2
   end
+
+  config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
   #
   # View the documentation for the provider you are using for more
   # information on available options.
