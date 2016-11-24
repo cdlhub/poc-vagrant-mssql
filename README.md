@@ -203,6 +203,9 @@ vagrant init <box>
 # Start the VM
 vagrant up
 
+# Provision again a running box
+vagrant provision
+
 # Shutdown VM
 vagrant halt
 
@@ -227,6 +230,9 @@ vagrant box remove <name>
 # Update boxes
 vagrant box update
 
-# Provision again a running box
-vagrant provision
+# Create a package from a running box
+vagrant package --output <box-name>.box
+
+# Add a package to boxes
+vagrant box add --name <name> <box-name>.box
 ```
