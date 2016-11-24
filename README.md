@@ -15,7 +15,8 @@
 
 ## Introduction
 
-The objective of this project is to be able to encapsulate MS SQL Server installation in a box to facilitate the creation of development, staging, and production environments. Another advanage is to be able to run the server on any host system (Windows, MacOS, Linux).
+The objective of this project is to be able to encapsulate MS SQL Server installation in a box to facilitate the creation of development, staging, and production environments. Another advanage is to be able to run the server on any host system (Windows, MacOS, Linux). The only drawback is that database files cannot be stored in a shared folder because of differences between Linux rights management
+and host file system.
 
 **Remark:** [MS SQL on Linux on Docker](https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-setup-docker) could also be a good choice. However, it has been rejected for now because:
 
