@@ -1,2 +1,5 @@
+# Vagrant metadata
 .vagrant/
+
+# Do not track packaged box
 *.box

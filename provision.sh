@@ -13,7 +13,7 @@ echo "#### 2. Done.\n"
 
 echo "##### 3. Seting up MS SQL Server..."
 export SA_PASSWORD='sa_pa$$w0rd'
-/opt/mssql/bin/sqlservr-setup --accept-eula --set-sa-password --start-service
+/opt/mssql/bin/sqlservr-setup --accept-eula --set-sa-password --enable-service --start-service
 echo "#### 3. Done."
 echo ""
 
