@@ -15,6 +15,9 @@ Proof of Concept to install MS SQL Server in a Vagrant Linux box
 
 **Note**: Vagrant boxes are located in `~/.vagrant.d/boxes/` (Linux) or `C:\Users\<your-login>\.vagrant.d\boxes\` (Windows).
 
+- We use CentOS because MS SQL for Linux is only packaged for Red Hat.
+- Docker has been rejected because it only runs on Windows 10 Pro.
+
 ### Troubleshooting
 
 #### Cannot download box
