@@ -27,10 +27,10 @@ Check MS SQL service is running:
 systemctl status mssql-server
 ```
 
-Connect to SQL Server from the VM:
+Install [VB Guest Vagrant plug-in](https://github.com/dotless-de/vagrant-vbguest):
 
 ```sh
-sqlcmd -S localhost -U SA -P 'sa_pa$$w0rd'
+vagrant plugin install vagrant-vbguest
 ```
 
 Create database on host file system:
@@ -40,30 +40,32 @@ use [master];
 go
 
 create database [test1] on primary
-( NAME = N'test1_data', FILENAME = N'/vagrant_data/test1.mdf')
+( NAME = N'testnfs2_data', FILENAME = N'/tmp/mssql/testnfs2.mdf')
 log on
-( NAME = N'test1_log', FILENAME = N'/vagrant_data/test1.ldf')
+( NAME = N'testnsf2_log', FILENAME = N'/tmp/mssql/testnfs2.ldf')
 go
 ```
 
-Attach a database:
+Vagrant boxes are located in `~/.vagrant.d/boxes/`.
 
-```sql
-CREATE DATABASE DatabaseName
-    ON (FILENAME = 'FilePath\FileName.mdf'), -- Main Data File .mdf
-    (FILENAME = 'FilePath\LogFileName.ldf') -- Log file .ldf
-    FOR ATTACH;
-GO
+If `vagrant up` cannot download box, it may be because of embedded `curl`.
+
+
+```
+The box 'hashicorp/precise64' could not be found or
+could not be accessed in the remote catalog. If this is a private
+box on HashiCorp's Atlas, please verify you're logged in via
+`vagrant login`. Also, please double-check the name. The expanded
+URL and error message are shown below:
+
+URL: ["https://atlas.hashicorp.com/hashicorp/precise64"]
+Error:
 ```
 
-## Solution
+**Solution**: Delete embedded `curl`:
 
-1. Shared folder does not work with DB file (neither MS SQL Server nor PostgreSQL) when switching host system (Windows, MacOS, ...).
-2. The DB file (mdf) needs to be inside Vagrant box =>
-    1. copy mdf from prod DB to a Vagrant shared folder.
-    2. Inside Vagrant box, copy mdf file from shared folder to MS SQL Server database file location.
-    3. change owner / group to `mssql`.
-    4. Attach DB files to server using `sqlcmd`.
+- MacOS: `sudo rm -rf /opt/vagrant/embedded/bin/curl`
+- Windows:
 
 ## Provisioning
 
@@ -102,12 +104,9 @@ vagrant status
 # List install boxes
 vagrant box list
 
-# Delete a vagrant box (and all its files in .vagrant.d/boxes)
-varant box remove <box-name>
+# Update boxes
+vagrant box update
 
-# Create a package from a running box
-vagrant package --output <box-name>.box
-
-# Add a package to boxes
-vagrant box add --name <name> <box-name>.box
+# Provision again a running box
+vagrant provision
 ```
