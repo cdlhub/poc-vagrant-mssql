@@ -201,7 +201,7 @@ Follow these steps if you want to reproduce the project.
 
     ```sh
     # sqlcmd
-    sqlcmd -S 192.168.33.10 -U SA -P 'sa_pa$$w0rd' -i scripts/insert-data.sqlcmd
+    sqlcmd -S 192.168.33.10 -U SA -P 'sa_pa$$w0rd' -i scripts/insert-data.sql
 
     # sql-cli
     mssql -s 192.168.33.10 -u SA -p 'sa_pa$$w0rd'
